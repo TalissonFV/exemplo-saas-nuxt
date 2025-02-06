@@ -1,44 +1,106 @@
 <template>
-  <div>
-    <h1 class="text-3xl">Register</h1>
-    <form @submit.prevent="register" class="mt-6">
-      <div>
-        <input v-model="email" type="email" placeholder="Email" required />
-      </div>
-      <div class="mt-4">
-        <input v-model="password" type="password" placeholder="Password" required />
-      </div>
-      <button type="submit" class="mt-6">Register</button>
-    </form>
-    <div v-if="message" class="mt-4">{{ message }}</div>
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
+    <UCard class="w-full max-w-md">
+      <template #header>
+        <h1 class="text-2xl font-bold text-center">Create Account</h1>
+      </template>
+
+      <UForm :schema="schema" :state="state" @submit="register" class="space-y-4">
+        <UFormGroup label="Name" name="name">
+          <UInput v-model="state.name" placeholder="John Doe" />
+        </UFormGroup>
+
+        <UFormGroup label="Email" name="email">
+          <UInput v-model="state.email" type="email" placeholder="john@example.com" />
+        </UFormGroup>
+
+        <UFormGroup label="Password" name="password">
+          <UInput v-model="state.password" type="password" placeholder="••••••••" />
+        </UFormGroup>
+
+        <UFormGroup label="Confirm Password" name="confirmPassword">
+          <UInput v-model="state.confirmPassword" type="password" placeholder="••••••••" />
+        </UFormGroup>
+
+        <UButton 
+          type="submit" 
+          color="primary" 
+          block
+          :loading="loading"
+          :disabled="loading"
+        >
+          Create Account
+        </UButton>
+      </UForm>
+
+      <p class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
+        Already have an account? 
+        <ULink to="/login" class="text-primary-500 hover:underline">Sign in</ULink>
+      </p>
+    </UCard>
+    <UNotifications />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { z } from 'zod'
 
-const email = ref('');
-const password = ref('');
-const message = ref('');
+const toast  = useToast()
+const router = useRouter()
+const loading = ref(false)
 const authStore = useAuthStore();
 
-const router = useRouter();
+// Form state
+const state = reactive({
+  name: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+})
 
 definePageMeta({
   middleware: 'auth-login',
 });
 
-const register = async () => {
+// Validation schema
+const schema = z.object({
+  name: z.string().min(3, 'Name must be at least 3 characters'),
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+  confirmPassword: z.string()
+}).refine(data => data.password === data.confirmPassword, {
+  message: "Passwords don't match",
+  path: ["confirmPassword"]
+})
+
+async function register () {
+  loading.value = true
   try {
+
+    const { name, email, password } = state
     await authStore.register({
-      email: email.value,
-      password: password.value,
+      name: name,
+      email: email,
+      password: password,
     });
-    router.push('/login');
+    
+    toast.add({
+      title: 'Success',
+      description: 'Account created successfully!',
+      color: 'green'
+    })
+    router.push('/login')
+
   } catch (error) {
     console.log(error)
-    message.value = error.message || 'Registration failed';
+    toast.add({
+      title: 'Error',
+      description: error.statusMessage || 'Registration failed',
+      color: 'red'
+    })
+  }
+  finally {
+    loading.value = false
   }
 };
 </script>

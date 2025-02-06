@@ -8,16 +8,15 @@ export default defineNuxtConfig({
     "@nuxt/ui",
   ],
   runtimeConfig: {
-    public: {
-      mongodbUri: process.env.MONGODB_URI,
-      dbName: process.env.DB_NAME
-    },
+    mongodbUri: process.env.MONGODB_URI,
+    dbName: process.env.DB_NAME,
+    jwtSecret: process.env.JWT_SECRET
   },
   imports: {
     dirs: ['./stores'], // Automatically import stores from the `stores` directory
   },
   typescript: {
     typeCheck: true
-  }
+  },
   
 });

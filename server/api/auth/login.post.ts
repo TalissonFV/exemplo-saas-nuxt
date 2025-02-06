@@ -1,43 +1,44 @@
-import { defineEventHandler, readBody, createError } from "h3";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
-import User from "../../models/User";
-import { connectDb } from "../../utils/db";
+import { User } from '~/server/models/User'
+import { connectToDatabase } from '~/server/utils/db'
+import jwt from 'jsonwebtoken'
 
 export default defineEventHandler(async (event) => {
-  await connectDb();
-  const body = await readBody(event);
+  await connectToDatabase()
+  const body = await readBody(event)
 
-  const { email, password } = body;
-
-  if (!email || !password) {
+  // Validate input
+  if (!body.email || !body.password) {
     throw createError({
       statusCode: 400,
-      message: "Email and password are required",
-    });
+      statusMessage: 'Email and password are required'
+    })
   }
-
-  // Find the user by email
-  const user = await User.findOne({ email });
+  // Find user
+  const user = await User.findOne({ email: body.email }).select('+password').exec()
   if (!user) {
-    throw createError({ statusCode: 400, message: "Invalid credentials" });
+    throw createError({
+      statusCode: 401,
+      statusMessage: 'Invalid credentials'
+    })
   }
 
-  // Compare the hashed passwords
-  const isMatch = await bcrypt.compare(password, user.password);
+  // Verify password
+  const isMatch = await user.comparePassword(String(body.password))
+
   if (!isMatch) {
-    throw createError({ statusCode: 400, message: "Invalid credentials" });
+    throw createError({
+      statusCode: 401,
+      statusMessage: 'Invalid credentials'
+    })
   }
 
-  // Generate a JWT token
+  // Generate JWT
+  const config = useRuntimeConfig()
   const token = jwt.sign(
-    { id: user._id },
-    process.env.JWT_SECRET || "secret_key",
-    { expiresIn: "1h" }
-  );
+    { userId: user._id, nome: user.name, email: user.email },
+    config.jwtSecret,
+    { expiresIn: '7d' }
+  )
 
-  return {
-    message: "Login successful",
-    access_token: token,
-  };
-});
+  return {access_token: token,}
+})

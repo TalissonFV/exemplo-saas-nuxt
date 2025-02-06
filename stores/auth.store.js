@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
+    name: '',
     token: null,
   }),
   actions: {
@@ -12,7 +13,6 @@ export const useAuthStore = defineStore('auth', {
         secure: true,
       });
       cookie.value = token;
-      console.log(cookue.value)
     },
     clearToken() {
       this.token = null;
@@ -48,12 +48,12 @@ export const useAuthStore = defineStore('auth', {
     },
     async register(credentials) {
       try {
-          await $fetch('/api/auth/register', {
-            method: 'POST',
-            body: credentials,
-          });
+        await $fetch('/api/auth/register', {
+          method: 'POST',
+          body: credentials,
+        });
       } catch (error) {
-        throw new Error('Register failed');
+        throw error;
       }
     },
     logout() {

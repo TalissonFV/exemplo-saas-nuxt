@@ -7,5 +7,6 @@ import { NuxtPage } from '#components';
   <div>
     <NuxtRouteAnnouncer />
     <NuxtPage/>
+    <UNotifications />
   </div>
 </template>

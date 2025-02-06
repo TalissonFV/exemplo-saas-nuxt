@@ -1,16 +1,23 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-export const connectDb = async (): Promise<void> => {
-  if (mongoose.connections[0].readyState) {
-    console.log('Using existing MongoDB connection');
-    return;
-  }
+const connection: { isConnected?: number } = {}
 
-  try {
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/nuxt-auth-db');
-    console.log('MongoDB connected');
-  } catch (error) {
-    console.error('MongoDB connection error:', error);
-    throw new Error('MongoDB connection error');
+export async function connectToDatabase() {
+  if (connection.isConnected) return
+
+  const config = useRuntimeConfig()
+  
+  const db = await mongoose.connect(config.mongodbUri, {
+    dbName: config.dbName,
+    serverSelectionTimeoutMS: 5000
+  })
+
+  connection.isConnected = db.connections[0].readyState
+}
+
+export function getModel<T extends mongoose.Document>(modelName: string, schema: mongoose.Schema<T>) {
+  if (mongoose.models[modelName]) {
+    return mongoose.model<T>(modelName)
   }
-};
+  return mongoose.model<T>(modelName, schema)
+}
