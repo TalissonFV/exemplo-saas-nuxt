@@ -156,6 +156,10 @@
 definePageMeta({
   middleware: 'auth',
 });
+
+const authStore = useAuthStore();
+const router = useRouter();
+
 const isSidebarOpen = ref(true)
 
 const menuItems = [
@@ -172,7 +176,13 @@ const userMenuItems = [
     { label: 'Settings', icon: 'i-heroicons-cog-8-tooth' }
   ],
   [
-    { label: 'Sign out', icon: 'i-heroicons-arrow-left-on-rectangle' }
+    { 
+      label: 'Sign out',
+      icon: 'i-heroicons-arrow-left-on-rectangle',
+      click: () => {
+        authStore.logout();
+        router.push('/login')
+    }}
   ]
 ]
 

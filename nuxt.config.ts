@@ -9,10 +9,15 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      appUrl: process.env.BASE_URL || "http://localhost:3001",
+      mongodbUri: process.env.MONGODB_URI,
+      dbName: process.env.DB_NAME
     },
   },
   imports: {
     dirs: ['./stores'], // Automatically import stores from the `stores` directory
+  },
+  typescript: {
+    typeCheck: true
   }
+  
 });
