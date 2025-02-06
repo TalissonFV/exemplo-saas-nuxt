@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :navigation="customNavigation" ></Header>
+    <Header :navigation="customNavigation"></Header>
     <UContainer class="flex items-center justify-center min-h-screen">
       <UCard class="w-full max-w-md">
         <template #header>
@@ -21,6 +21,14 @@
   
         <template #footer>
           <p v-if="error" class="text-red-500 text-center">{{ error }}</p>
+          
+          <!-- Register Button -->
+          <div class="text-center mt-4">
+            <p>Don't have an account?</p>
+            <UButton variant="outline" color="primary" @click="navigateToRegister" class="mt-2">
+              Register
+            </UButton>
+          </div>
         </template>
       </UCard>
     </UContainer>
@@ -35,7 +43,6 @@ import { useRouter } from 'vue-router';
 definePageMeta({
   middleware: 'auth-login',
 });
-
 
 const email = ref('');
 const password = ref('');
@@ -53,6 +60,11 @@ const handleLogin = async () => {
   } catch (err) {
     error.value = 'Invalid email or password';
   }
+};
+
+// Navigate to the registration page
+const navigateToRegister = () => {
+  router.push('/register'); // Update this with the actual registration route
 };
 </script>
 

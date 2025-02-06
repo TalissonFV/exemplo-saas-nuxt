@@ -27,7 +27,7 @@ export const useAuthStore = defineStore('auth', {
     },
     async login(credentials) {
       try {
-        const response = await $fetch('http://localhost:3001/auth/login', {
+        const response = await $fetch('/api/auth/login', {
           method: 'POST',
           body: credentials,
         });
@@ -44,6 +44,16 @@ export const useAuthStore = defineStore('auth', {
         cookie.value = response.access_token;
       } catch (error) {
         throw new Error('Login failed');
+      }
+    },
+    async register(credentials) {
+      try {
+          await $fetch('/api/auth/register', {
+            method: 'POST',
+            body: credentials,
+          });
+      } catch (error) {
+        throw new Error('Register failed');
       }
     },
     logout() {
