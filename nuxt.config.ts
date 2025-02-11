@@ -6,6 +6,7 @@ export default defineNuxtConfig({
   modules: [
     "@pinia/nuxt", // Add Pinia module
     "@nuxt/ui",
+    "@nuxthub/core"
   ],
   runtimeConfig: {
     mongodbUri: process.env.MONGODB_URI,
@@ -17,6 +18,11 @@ export default defineNuxtConfig({
   },
   typescript: {
     typeCheck: true
+  },
+  hub: {
+
+  },
+  nitro: {
   },
   
 });
