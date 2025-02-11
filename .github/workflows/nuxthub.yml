@@ -35,3 +35,4 @@ jobs:
         id: deploy
         with:
           project-key: exemplo-saas-nu-innc
+          directory: .output
