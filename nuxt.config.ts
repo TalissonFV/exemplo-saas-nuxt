@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   sourcemap: process.env.NODE_ENV !== 'production', // Disable source maps in production
   compatibilityDate: "2025-02-05",
   devtools: { enabled: true },
+  ssr: true, // Enable SSR (Server-Side Rendering)
   modules: [
     "@pinia/nuxt", // Add Pinia module
     "@nuxt/ui",

@@ -36,3 +36,6 @@ jobs:
         with:
           project-key: exemplo-saas-nu-innc
           directory: .output
+          hub-url: https://admin.hub.nuxt.com
+        env:
+          PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
