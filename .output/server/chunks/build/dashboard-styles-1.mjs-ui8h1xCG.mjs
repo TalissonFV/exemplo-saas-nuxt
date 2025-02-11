@@ -1,0 +1,3 @@
+const dashboard_vue_vue_type_style_index_0_lang = "aside,main{transition:all .3s ease-in-out}::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{--tw-bg-opacity:1;background-color:rgb(var(--color-gray-100)/var(--tw-bg-opacity,1))}:is(.dark *)::-webkit-scrollbar-track{--tw-bg-opacity:1;background-color:rgb(var(--color-gray-800)/var(--tw-bg-opacity,1))}::-webkit-scrollbar-thumb{border-radius:9999px;--tw-bg-opacity:1;background-color:rgb(var(--color-gray-300)/var(--tw-bg-opacity,1))}:is(.dark *)::-webkit-scrollbar-thumb{--tw-bg-opacity:1;background-color:rgb(var(--color-gray-600)/var(--tw-bg-opacity,1))}";
+
+export { dashboard_vue_vue_type_style_index_0_lang as d };
