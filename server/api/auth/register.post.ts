@@ -7,7 +7,6 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   
   try {
-    // Check if user already exists
     const existingUser = await User.findOne({ email: body.email })
     if (existingUser) {
       throw createError({
@@ -16,14 +15,12 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    // Create new user
     const user = new User({
       name: body.name,
       email: body.email,
       password: body.password
     })
 
-    // Save to database
     await user.save()
     
   } catch (error: any) {

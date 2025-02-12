@@ -142,7 +142,6 @@ definePageMeta({
   title: 'SaaSify',
 })
 
-// Define custom navigation
 const customNavigation = [
   { name: 'Features', href: '#features', icon: 'i-heroicons-sparkles' },
   { name: 'Pricing', href: '#pricing', icon: 'i-heroicons-currency-dollar' },

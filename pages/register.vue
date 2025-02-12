@@ -50,7 +50,6 @@ const router = useRouter()
 const loading = ref(false)
 const authStore = useAuthStore();
 
-// Form state
 const state = reactive({
   name: '',
   email: '',
@@ -62,7 +61,6 @@ definePageMeta({
   middleware: 'auth-login',
 });
 
-// Validation schema
 const schema = z.object({
   name: z.string().min(3, 'Name must be at least 3 characters'),
   email: z.string().email('Invalid email address'),

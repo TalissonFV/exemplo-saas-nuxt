@@ -16,7 +16,6 @@ const userSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-// Password hashing middleware
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
@@ -37,7 +36,6 @@ export interface UserDocument extends Document {
   comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
-// Password comparison method
 userSchema.methods.comparePassword = async function (
   candidatePassword: string
 ): Promise<boolean> {

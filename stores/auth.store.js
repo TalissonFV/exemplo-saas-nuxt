@@ -32,10 +32,8 @@ export const useAuthStore = defineStore('auth', {
           body: credentials,
         });
 
-        // Set the token in the store
         this.token = response.access_token;
 
-        // Set the cookie
         const cookie = useCookie('auth-token-example-saas', {
           secure: true,
           sameSite: 'strict',

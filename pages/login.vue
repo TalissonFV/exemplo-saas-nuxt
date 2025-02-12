@@ -56,15 +56,14 @@ const handleLogin = async () => {
       email: email.value,
       password: password.value,
     });
-    router.push('/dashboard'); // Redirect to dashboard after login
+    router.push('/dashboard');
   } catch (err) {
     error.value = 'Invalid email or password';
   }
 };
 
-// Navigate to the registration page
 const navigateToRegister = () => {
-  router.push('/register'); // Update this with the actual registration route
+  router.push('/register');
 };
 </script>
 

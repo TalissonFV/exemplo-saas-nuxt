@@ -35,7 +35,6 @@
 </template>
 
 <script setup>
-// Define props
 const props = defineProps({
   navigation: {
     type: Array,

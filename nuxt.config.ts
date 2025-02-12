@@ -1,11 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  sourcemap: process.env.NODE_ENV !== 'production', // Disable source maps in production
+  sourcemap: process.env.NODE_ENV !== 'production',
   compatibilityDate: "2025-02-05",
   devtools: { enabled: true },
-  ssr: true, // Enable SSR (Server-Side Rendering)
+  ssr: true,
   modules: [
-    "@pinia/nuxt", // Add Pinia module
+    "@pinia/nuxt",
     "@nuxt/ui",
   ],
   app: {
@@ -22,7 +22,7 @@ export default defineNuxtConfig({
     jwtSecret: process.env.JWT_SECRET
   },
   imports: {
-    dirs: ['./stores'], // Automatically import stores from the `stores` directory
+    dirs: ['./stores'],
   },
   typescript: {
     typeCheck: true
