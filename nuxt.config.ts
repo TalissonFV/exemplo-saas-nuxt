@@ -8,6 +8,14 @@ export default defineNuxtConfig({
     "@pinia/nuxt", // Add Pinia module
     "@nuxt/ui",
   ],
+  app: {
+    head: {
+      title: 'SaaSify',
+      htmlAttrs: {
+        lang: 'en'
+      }
+    },
+  },
   runtimeConfig: {
     mongodbUri: process.env.MONGODB_URI,
     dbName: process.env.DB_NAME,
