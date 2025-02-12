@@ -18,7 +18,8 @@ export default defineEventHandler(async (event) => {
     const user = new User({
       name: body.name,
       email: body.email,
-      password: body.password
+      provider: body.provider,
+      googleId: body.googleId
     })
 
     await user.save()
@@ -26,7 +27,7 @@ export default defineEventHandler(async (event) => {
   } catch (error: any) {
     throw createError({
       statusCode: error.statusCode || 500,
-      statusMessage: error.message || 'Registration failed'
+      statusMessage: error.message || 'Registration with Google failed'
     })
   }
 })
