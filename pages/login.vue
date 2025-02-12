@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :navigation="customNavigation"></Header>
+    <Header :navigation="[]" :showGetStartedButton="false"></Header>
     <UContainer class="flex items-center justify-center min-h-screen">
       <UCard class="w-full max-w-md">
         <template #header>

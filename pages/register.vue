@@ -1,44 +1,48 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
-    <UCard class="w-full max-w-md">
-      <template #header>
-        <h1 class="text-2xl font-bold text-center">Create Account</h1>
-      </template>
+  <div>
 
-      <UForm :schema="schema" :state="state" @submit="register" class="space-y-4">
-        <UFormGroup label="Name" name="name">
-          <UInput v-model="state.name" placeholder="John Doe" />
-        </UFormGroup>
-
-        <UFormGroup label="Email" name="email">
-          <UInput v-model="state.email" type="email" placeholder="john@example.com" />
-        </UFormGroup>
-
-        <UFormGroup label="Password" name="password">
-          <UInput v-model="state.password" type="password" placeholder="••••••••" />
-        </UFormGroup>
-
-        <UFormGroup label="Confirm Password" name="confirmPassword">
-          <UInput v-model="state.confirmPassword" type="password" placeholder="••••••••" />
-        </UFormGroup>
-
-        <UButton 
-          type="submit" 
-          color="primary" 
-          block
-          :loading="loading"
-          :disabled="loading"
-        >
-          Create Account
-        </UButton>
-      </UForm>
-
-      <p class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
-        Already have an account? 
-        <ULink to="/login" class="text-primary-500 hover:underline">Sign in</ULink>
-      </p>
-    </UCard>
-    <UNotifications />
+    <Header :navigation="[]" :showGetStartedButton="false"></Header>
+    <div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4">
+      <UCard class="w-full max-w-md">
+        <template #header>
+          <h1 class="text-2xl font-bold text-center">Create Account</h1>
+        </template>
+  
+        <UForm :schema="schema" :state="state" @submit="register" class="space-y-4">
+          <UFormGroup label="Name" name="name">
+            <UInput v-model="state.name" placeholder="John Doe" />
+          </UFormGroup>
+  
+          <UFormGroup label="Email" name="email">
+            <UInput v-model="state.email" type="email" placeholder="john@example.com" />
+          </UFormGroup>
+  
+          <UFormGroup label="Password" name="password">
+            <UInput v-model="state.password" type="password" placeholder="••••••••" />
+          </UFormGroup>
+  
+          <UFormGroup label="Confirm Password" name="confirmPassword">
+            <UInput v-model="state.confirmPassword" type="password" placeholder="••••••••" />
+          </UFormGroup>
+  
+          <UButton 
+            type="submit" 
+            color="primary" 
+            block
+            :loading="loading"
+            :disabled="loading"
+          >
+            Create Account
+          </UButton>
+        </UForm>
+  
+        <p class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
+          Already have an account? 
+          <ULink to="/login" class="text-primary-500 hover:underline">Sign in</ULink>
+        </p>
+      </UCard>
+      <UNotifications />
+    </div>
   </div>
 </template>
 
