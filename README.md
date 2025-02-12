@@ -27,11 +27,13 @@ bun install
 
 Copy the content of the `.env.example` to a `.env` in the root folder.
 
+Example:
 ```
-NODE_ENV= // Environment control
-MONGODB_URI= // MongoDB connection string
-DB_NAME= // MongoDB database name
-JWT_SECRET= // JWT secret hash
+NODE_ENV= //Environment control
+MONGODB_URI= //MongoDB connection string
+DB_NAME= //MongoDB database name
+JWT_SECRET= //JWT secret hash
+...
 ```
 
 ## Development Server
