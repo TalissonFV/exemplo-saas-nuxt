@@ -4,7 +4,7 @@
     <Header :navigation="customNavigation" />
 
     <!-- Hero Section -->
-    <section class="relative bg-gradient-to-br from-indigo-600 to-purple-500 py-20 mt-24">
+    <section class="relative bg-gradient-to-br from-indigo-600 to-green-500 py-20 mt-24">
       <div class="container mx-auto px-4 text-center">
         <UBadge variant="solid" color="white" class="mb-6">Version 2.0 is here!</UBadge>
         <h1 class="text-5xl font-bold text-white mb-6">
@@ -14,10 +14,10 @@
           Transform your business processes with our AI-powered automation platform. Focus on what matters while we handle the rest.
         </p>
         <div class="flex justify-center gap-4">
-          <UButton size="xl" color="white" variant="solid" class="px-8">
+          <UButton to="/login" size="xl" color="white" variant="solid" class="px-8">
             Get Started Free
           </UButton>
-          <UButton size="xl" color="white" variant="outline" class="px-8">
+          <UButton to="https://www.youtube.com/watch?v=dQw4w9WgXcQ" size="xl" color="white" variant="outline" class="px-8">
             Watch Demo
           </UButton>
         </div>
@@ -28,7 +28,13 @@
     <section class="py-20 bg-gray-50 dark:bg-gray-800" id="features">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-          <UBadge variant="subtle" color="primary" class="mb-4">Why choose us</UBadge>
+          <UBadge 
+            variant="solid" 
+            color="primary"
+            class="mb-4 dark:bg-primary-500 dark:text-white bg-primary-100 text-primary-700"
+          >
+            Why choose us
+          </UBadge>
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Everything You Need to Succeed
           </h2>
@@ -55,7 +61,13 @@
     <section class="py-20" id="pricing">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-          <UBadge variant="subtle" color="primary" class="mb-4">Pricing</UBadge>
+          <UBadge 
+            variant="solid" 
+            color="primary"
+            class="mb-4 dark:bg-primary-500 dark:text-white bg-primary-100 text-primary-700"
+          >
+            Pricing
+          </UBadge>
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Simple, Transparent Pricing
           </h2>
@@ -125,6 +137,10 @@
 </template>
 
 <script setup>
+
+definePageMeta({
+  title: 'SaaSify',
+})
 
 // Define custom navigation
 const customNavigation = [

@@ -8,7 +8,7 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     setToken(token) {
       this.token = token;
-      const cookie = useCookie('auth-token', {
+      const cookie = useCookie('auth-token-example-saas', {
         maxAge: 60 * 60 * 24 * 7, // 1 week
         secure: true,
       });
@@ -16,11 +16,11 @@ export const useAuthStore = defineStore('auth', {
     },
     clearToken() {
       this.token = null;
-      const cookie = useCookie('auth-token');
+      const cookie = useCookie('auth-token-example-saas');
       cookie.value = null;
     },
     initializeToken() {
-      const cookie = useCookie('auth-token');
+      const cookie = useCookie('auth-token-example-saas');
       if (cookie.value) {
         this.token = cookie.value;
       }
@@ -36,7 +36,7 @@ export const useAuthStore = defineStore('auth', {
         this.token = response.access_token;
 
         // Set the cookie
-        const cookie = useCookie('auth-token', {
+        const cookie = useCookie('auth-token-example-saas', {
           secure: true,
           sameSite: 'strict',
           maxAge: 60 * 60 * 24 * 7, // 1 week
