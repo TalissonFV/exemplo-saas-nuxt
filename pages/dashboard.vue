@@ -156,6 +156,9 @@
 definePageMeta({
   middleware: 'auth',
 });
+useHead({
+  title: 'SaaSify - Dashboard'
+})
 
 const authStore = useAuthStore();
 const router = useRouter();

@@ -24,7 +24,7 @@
             <UIcon :name="link.icon" class="w-5 h-5 mr-2" />
             {{ link.name }}
           </UButton>
-          <UButton to="/login" color="primary">
+          <UButton v-if="showGetStartedButton" to="/login" color="primary">
             <UIcon name="i-heroicons-arrow-right" class="w-5 h-5 mr-2" />
             Get Started
           </UButton>
@@ -35,12 +35,17 @@
 </template>
 
 <script setup>
-// Define props
 const props = defineProps({
   navigation: {
     type: Array,
     default: () => [
     ]
+  },
+  showGetStartedButton: {
+    type: Boolean,
+    default: true
   }
 });
+
+
 </script>

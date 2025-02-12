@@ -1,10 +1,15 @@
-# Nuxt Minimal Starter
+# SaaSify
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A SaaS app example made for practice and skill showcase.
+It has a Landing Page showing all details about the product with a web app containing all the functionalities that a SaaS might offer.
 
-## Setup
+All made using Nuxt 3 and MongoDB as Database.
 
-Make sure to install dependencies:
+Look at the [Live demo](https://exemplo-saas-nuxt.vercel.app/). You can register and use the platform for free! =)
+
+## Local Dev Setup
+
+Make sure to have a [MongoDB](https://www.mongodb.com/) environment running either locally or on the cloud and to install dependencies:
 
 ```bash
 # npm
@@ -18,6 +23,17 @@ yarn install
 
 # bun
 bun install
+```
+
+Copy the content of the `.env.example` to a `.env` in the root folder.
+
+Example:
+```
+NODE_ENV= //Environment control
+MONGODB_URI= //MongoDB connection string
+DB_NAME= //MongoDB database name
+JWT_SECRET= //JWT secret hash
+...
 ```
 
 ## Development Server
@@ -37,39 +53,3 @@ yarn dev
 # bun
 bun run dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
